@@ -6,7 +6,11 @@ export default function Die(props){
     }
 
     return (
-        <div className="single-die" style={holdStyle}>
+        <div 
+            className="single-die" 
+            style={holdStyle}
+            onClick={props.selectDieOnHold}
+            >
             <h2>{props.value}</h2>
         </div>
     )
