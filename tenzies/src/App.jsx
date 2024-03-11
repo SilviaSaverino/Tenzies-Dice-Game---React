@@ -16,7 +16,6 @@ function App() {
 
     if (diceSetAllHeld && allDiceWithSameValue){
       setTenzies(true)
-      console.log("you win")
     }
   }, [newDice])
 
@@ -37,9 +36,15 @@ function App() {
   }
 
   function rollDice() {
-    setNewDice(oldDice => oldDice.map(dieToBeSkipped => {
-      return dieToBeSkipped.isHeld === true ? dieToBeSkipped : createNewDiceSet()
-    }))
+    if(!tenzies){
+      setNewDice(oldDice => oldDice.map(dieToBeSkipped => {
+        return dieToBeSkipped.isHeld === true ? dieToBeSkipped : createNewDiceSet()
+      }))
+    } else {
+      setTenzies(false)
+      setNewDice(getNewDice())
+    }
+    
   }
 
 
