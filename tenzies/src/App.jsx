@@ -7,27 +7,27 @@ function App() {
 
   const [newDice, setNewDice] = useState(getNewDice())
 
-function createNewDiceSet(){
-  return {
-    value: Math.ceil(Math.random() * 6),
-    isHeld: false,
-    id: nanoid()
+  function createNewDiceSet() {
+    return {
+      value: Math.ceil(Math.random() * 6),
+      isHeld: false,
+      id: nanoid()
+    }
   }
-}
 
   function getNewDice() {
     const newDiceSet = []
     for (let i = 0; i < 10; i++) {
       newDiceSet.push(createNewDiceSet())
-      }
+    }
     return newDiceSet
   }
 
   function rollDice() {
     setNewDice(oldDice => oldDice.map(dieToBeSkipped => {
       return dieToBeSkipped.isHeld === true ? dieToBeSkipped : createNewDiceSet()
-  }))
-    }
+    }))
+  }
 
 
   function selectDieOnHold(id) {
@@ -46,6 +46,11 @@ function createNewDiceSet(){
   ))
   return (
     <main>
+      <div className='info'>
+        <h1 className="title">Tenzies</h1>
+        <p className="instructions">Roll until all dice are the same. </p>
+        <p className="instructions"> Click each die to freeze it at its current value between rolls.</p>
+      </div>
       <div className='die-container'>
         {diceElements}
       </div>
